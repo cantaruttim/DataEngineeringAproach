@@ -5,7 +5,7 @@ from utils.utils import *
 # CONSTANT VARIABLES
 BASE_FOLDER = Path("cvm_data")
 ENTITY_NAME = "CIA_ABERTA"
-file_name = "dfp_cia_aberta_2025.zip"
+file_name = "dfp_cia_aberta_2020.zip"
 base_url = "https://dados.cvm.gov.br/dados"
 specific_url = "/CIA_ABERTA/DOC/DFP/DADOS/"
 
@@ -40,7 +40,7 @@ year_entity_dir = move_year_to_entity(
     year_dir
 )
 
-organize_by_cia_aberta_acronyms(
+organize_by_acronyms(
     year_entity_dir,
     ACRONYMS_CIA
 )

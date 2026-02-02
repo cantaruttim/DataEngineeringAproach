@@ -29,7 +29,7 @@ def download_and_extract_zip(
 ) -> None:
 
     url = f"{base_url}{specific_url}{file_name}"
-    print(f"Downloading: {url} ... ")
+    print(f"Downloading: {url} ...  ✅ ")
 
     response = requests.get(url)
     response.raise_for_status()
@@ -54,7 +54,7 @@ def move_files_to_year_folder(
 
     for item in base_folder.iterdir():
         if item.is_file() and year in item.name:
-            print(f"Moving {item.name} → {year}/ ✅ ")
+            print(f"Moving {item.name} → {year}/")
             item.rename(year_dir / item.name)
 
     return year_dir
@@ -71,12 +71,12 @@ def move_year_to_entity(
     target_dir = entity_dir / year_dir.name
 
     if not target_dir.exists():
-        print(f"Moving {year_dir.name} → {entity_name}/ ✅ ")
+        print(f"Moving {year_dir.name} → {entity_name}/")
         year_dir.rename(target_dir)
 
     return target_dir
 
-def organize_by_cia_aberta_acronyms(
+def organize_by_acronyms(
     year_entity_dir: Path,
     acronyms: dict
 ) -> None:
@@ -92,7 +92,7 @@ def organize_by_cia_aberta_acronyms(
                 target_dir = year_entity_dir / folder_name
                 target_dir.mkdir(exist_ok=True)
 
-                print(f"Moving {file.name} → {folder_name}/ ✅ ")
+                print(f"Moving {file.name} → {folder_name}/")
                 file.rename(target_dir / file.name)
                 break
 
