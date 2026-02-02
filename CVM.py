@@ -10,14 +10,13 @@ spark = (
         .getOrCreate()
 )
 
+# CONSTANT VARIABLES
 file_name = "dfp_cia_aberta_2025.zip"
 base_url = "https://dados.cvm.gov.br/dados"
 specific_url = "/CIA_ABERTA/DOC/DFP/DADOS/"
 
-
 def read_cvm_cia_data(file_name, base_url, specific_url):
     url = f"{base_url}{specific_url}{file_name}"
-    zip_path = "dados_cvm.zip"
     extract_path = "./cvm_data"
 
     print(f"Downloading files: {url} ...")
@@ -28,7 +27,7 @@ def read_cvm_cia_data(file_name, base_url, specific_url):
         with zipfile.ZipFile(io.BytesIO(response.content)) as z:
             z.extractall(extract_path)
             csv_filename = z.namelist()[0]
-            print(f"Arquivo {csv_filename} extraído com sucesso!")
+            print(f"File {csv_filename} extracted successfully!")
         
         df = (
             spark
