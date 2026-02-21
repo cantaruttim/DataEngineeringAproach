@@ -1,21 +1,7 @@
-from pyspark.sql import SparkSession
 from pathlib import Path
 import requests
 import zipfile
 import io
-
-
-# =============================
-# ======= SPARK SESSION =======
-# =============================
-
-def sparkSessionInicialization(name : str) -> None:
-    if name is None:
-        spark = (SparkSession.builder.getOrCreate())
-        return spark
-    else:
-        spark = (SparkSession.builder.appName(name).getOrCreate())
-    return spark
 
 # ================================
 # ===== TREATING CNPJ OR CPF =====

@@ -1,9 +1,10 @@
 from utils.utils import *
+from pyspark.sql import SparkSession
 
 # CONSTANT VARIABLES
 BASE_FOLDER = Path("cvm_data")
 ENTITY_NAME = "CIA_ABERTA"
-FILE_NAME = "dfp_cia_aberta_2020.zip"
+FILE_NAME = "dfp_cia_aberta_2021.zip"
 BASE_URL = "https://dados.cvm.gov.br/dados"
 SPECIFIC_URL = "/CIA_ABERTA/DOC/DFP/DADOS/"
 
@@ -16,8 +17,7 @@ ACRONYMS_CIA = {
     "inf": "INF"
 }
 
-spark = sparkSessionInicialization(name="CIA")
-
+spark = (SparkSession.builder.getOrCreate())
 
 download_and_extract_zip(
     FILE_NAME,
