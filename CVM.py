@@ -1,19 +1,11 @@
-from pathlib import Path
-from pyspark.sql import SparkSession
 from utils.utils import *
 
 # CONSTANT VARIABLES
 BASE_FOLDER = Path("cvm_data")
 ENTITY_NAME = "CIA_ABERTA"
-file_name = "dfp_cia_aberta_2020.zip"
-base_url = "https://dados.cvm.gov.br/dados"
-specific_url = "/CIA_ABERTA/DOC/DFP/DADOS/"
-
-spark = (
-    SparkSession.builder
-        .appName("AnaliseCVM")
-        .getOrCreate()
-)
+FILE_NAME = "dfp_cia_aberta_2020.zip"
+BASE_URL = "https://dados.cvm.gov.br/dados"
+SPECIFIC_URL = "/CIA_ABERTA/DOC/DFP/DADOS/"
 
 ACRONYMS_CIA = {
     "dre": "DRE",
@@ -24,14 +16,17 @@ ACRONYMS_CIA = {
     "inf": "INF"
 }
 
+spark = sparkSessionInicialization(name="CIA")
+
+
 download_and_extract_zip(
-    file_name,
-    base_url,
-    specific_url,
+    FILE_NAME,
+    BASE_URL,
+    SPECIFIC_URL,
     BASE_FOLDER
 )
 
-year = extract_year_from_filename(file_name)
+year = extract_year_from_filename(FILE_NAME)
 year_dir = move_files_to_year_folder(BASE_FOLDER, year)
 
 year_entity_dir = move_year_to_entity(
