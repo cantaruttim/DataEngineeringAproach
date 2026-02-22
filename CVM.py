@@ -8,6 +8,8 @@ FILE_NAME = "dfp_cia_aberta_2021.zip"
 BASE_URL = "https://dados.cvm.gov.br/dados"
 SPECIFIC_URL = "/CIA_ABERTA/DOC/DFP/DADOS/"
 
+spark = (SparkSession.builder.getOrCreate())
+
 ACRONYMS_CIA = {
     "dre": "DRE",
     "bpa": "BPA",
@@ -17,7 +19,6 @@ ACRONYMS_CIA = {
     "inf": "INF"
 }
 
-spark = (SparkSession.builder.getOrCreate())
 
 download_and_extract_zip(
     FILE_NAME,
